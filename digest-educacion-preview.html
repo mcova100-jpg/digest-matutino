@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digest Matutino — Educación · Martes 7 de abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #e8e4dc; font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; }
+.topbar { width: 100%; max-width: 640px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.brand { font-family: 'Playfair Display', serif; font-size: 15px; color: #0f0e0b; display: flex; align-items: center; gap: 8px; }
+.badge { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: #eeedfe; color: #3c3489; border: 0.5px solid #afa9ec; padding: 4px 10px; border-radius: 3px; }
+.email-wrap { width: 100%; max-width: 640px; background: #fff; border-radius: 4px; overflow: hidden; border: 0.5px solid #ccc; }
+.chrome { background: #f0ede8; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #ddd; }
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.chrome-label { font-size: 12px; color: #888; margin-left: 8px; }
+.email-meta { padding: 18px 32px 16px; border-bottom: 1px solid #e8e4dc; background: #faf9f6; }
+.meta-row { display: flex; gap: 10px; font-size: 13px; margin-bottom: 4px; }
+.meta-label { color: #999; min-width: 40px; }
+.meta-val { color: #1a1a18; font-weight: 500; }
+.subject-row { padding: 14px 32px; background: #faf9f6; border-bottom: 1px solid #e8e4dc; }
+.subject-text { font-size: 15px; font-weight: 500; color: #0f0e0b; }
+.email-body { background: #f5f0e8; }
+.eheader { background: #0f0e0b; padding: 36px 32px 32px; border-bottom: 3px solid #c8392b; }
+.brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.brand-name { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #7a7468; }
+.edition-num { font-size: 11px; color: #5a5650; }
+.main-headline { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: #f5f0e8; line-height: 1.2; margin-bottom: 10px; }
+.main-sub { font-size: 13px; color: #7a7468; }
+.toc { background: #ede8dc; border-left: 3px solid #c8392b; padding: 16px 20px; margin: 24px 32px 0; }
+.toc-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7468; margin-bottom: 8px; }
+.toc-item { font-size: 12px; color: #4a4840; padding: 3px 0; display: flex; gap: 10px; }
+.toc-n { color: #c8392b; font-weight: 500; min-width: 20px; }
+.stories { padding: 24px 32px 8px; }
+.story { padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid #d4cfc4; }
+.story:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.story-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.src-pill { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3c3489; background: #eeedfe; border: 0.5px solid #afa9ec; padding: 3px 8px; border-radius: 3px; }
+.story-n { font-size: 11px; color: #9e9a90; }
+.story-title a { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: #0f0e0b; line-height: 1.35; text-decoration: none; display: block; margin-bottom: 10px; }
+.story-title a:hover { color: #3c3489; }
+.arrow { font-size: 12px; color: #7f77dd; margin-left: 5px; }
+.story-body { font-size: 13.5px; color: #5a5650; line-height: 1.7; font-family: Georgia, serif; margin-bottom: 10px; }
+.read-more { font-size: 12px; font-weight: 500; color: #534ab7; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.read-more:hover { text-decoration: underline; }
+.read-line { width: 16px; height: 1px; background: #534ab7; display: inline-block; }
+.signoff-block { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-top: 3px solid #0f0e0b; margin-top: 8px; }
+.signoff-text { font-size: 14px; color: #5a5650; font-family: Georgia, serif; font-style: italic; }
+.efooter { background: #ede8dc; border-top: 1px solid #d4cfc4; padding: 20px 32px; }
+.footer-sources { font-size: 11px; color: #7a7468; line-height: 1.8; }
+.footer-sources strong { color: #5a5650; }
+.footer-divider { height: 1px; background: #d4cfc4; margin: 10px 0; }
+.footer-unsub { font-size: 11px; color: #9e9a90; text-align: center; }
+.cta-bar { margin-top: 2rem; text-align: center; padding-bottom: 2rem; }
+.cta-bar p { font-size: 13px; color: #7a7468; margin-bottom: 12px; }
+.cta-btn { display: inline-block; background: #c8392b; color: #fff; font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 3px; text-decoration: none; transition: background 0.2s; }
+.cta-btn:hover { background: #a8301f; }
+@media (max-width: 640px) {
+  .eheader, .stories, .signoff-block, .efooter, .toc, .email-meta, .subject-row { padding-left: 20px; padding-right: 20px; }
+  .toc { margin-left: 20px; margin-right: 20px; }
+  .main-headline { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="brand">☀️ Digest Matutino</span>
+  <span class="badge">Martes 7 de abril · Edición Breve</span>
+</div>
+
+<div class="email-wrap">
+  <div class="chrome">
+    <span class="dot" style="background:#e24b4a"></span>
+    <span class="dot" style="background:#ef9f27"></span>
+    <span class="dot" style="background:#639922"></span>
+    <span class="chrome-label">Bandeja de entrada — tu@correo.com</span>
+  </div>
+
+  <div class="email-meta">
+    <div class="meta-row"><span class="meta-label">De:</span><span class="meta-val">Digest Matutino &lt;hola@digestmatutino.cl&gt;</span></div>
+    <div class="meta-row"><span class="meta-label">Para:</span><span class="meta-val">tu@correo.com</span></div>
+    <div class="meta-row"><span class="meta-label">Fecha:</span><span style="font-size:13px;color:#999;">Martes, 7 de abril de 2026 — 07:00 AM</span></div>
+  </div>
+  <div class="subject-row">
+    <div class="subject-text">Tu Digest Matutino — martes, 7 de abril de 2026</div>
+  </div>
+
+  <div class="email-body">
+
+    <div class="eheader">
+      <div class="brand-row">
+        <span class="brand-name">Digest Matutino</span>
+        <span class="edition-num">Edición #142 · Educación · Breve</span>
+      </div>
+      <div class="main-headline">Lo que debes saber sobre educación en Chile hoy</div>
+      <div class="main-sub">3 noticias del día · Martes 7 de abril de 2026</div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-label">En esta edición</div>
+      <div class="toc-item"><span class="toc-n">01</span><span>Chile celebra hoy el Día de la Educación Rural</span></div>
+      <div class="toc-item"><span class="toc-n">02</span><span>Encuesta Cadem: 81% ve aumento de violencia escolar</span></div>
+      <div class="toc-item"><span class="toc-n">03</span><span>Congreso despacha ley de convivencia y buen trato en colegios</span></div>
+    </div>
+
+    <div class="stories">
+
+      <div class="story">
+        <div class="story-header">
+          <span class="src-pill">OvejeroNoticias · 7 abril</span>
+          <span class="story-n">01 / 03</span>
+        </div>
+        <div class="story-title">
+          <a href="https://www.ovejeronoticias.cl/2026/04/red-de-escuelas-rurales-en-magallanes-garantiza-la-educacion-para-213-estudiantes/" target="_blank">
+            Chile celebra hoy el Día de la Educación Rural en homenaje a Gabriela Mistral<span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="story-body">Este martes 7 de abril se conmemora el Día de la Educación Rural, instaurado en 1998 para coincidir con el natalicio de Gabriela Mistral, primera latinoamericana en ganar el Nobel de Literatura y emblema de la docencia rural chilena. En Magallanes, una red de escuelas celebra la fecha garantizando educación a 213 estudiantes en zonas de aislamiento geográfico y clima extremo.</div>
+        <a class="read-more" href="https://www.ovejeronoticias.cl/2026/04/red-de-escuelas-rurales-en-magallanes-garantiza-la-educacion-para-213-estudiantes/" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
+      </div>
+
+      <div class="story">
+        <div class="story-header">
+          <span class="src-pill">Hoy Noticias · 7 abril</span>
+          <span class="story-n">02 / 03</span>
+        </div>
+        <div class="story-title">
+          <a href="https://hoynoticias.cl/dato-util/bono-logro-escolar-chile-educacion-rendimiento-academico-51/87390/2026/04/02/" target="_blank">
+            Encuesta Cadem revela que 8 de cada 10 chilenos percibe aumento de violencia escolar<span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="story-body">Una nueva encuesta Cadem publicada hoy muestra que el 81% de los chilenos percibe un alarmante aumento de la violencia en establecimientos educacionales, con fuerte apoyo ciudadano a medidas de seguridad como detectores de metales en los accesos. El sondeo se produce en el contexto de los debates legislativos en el Senado para enfrentar el fenómeno con proyectos concretos.</div>
+        <a class="read-more" href="https://hoynoticias.cl/dato-util/bono-logro-escolar-chile-educacion-rendimiento-academico-51/87390/2026/04/02/" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
+      </div>
+
+      <div class="story">
+        <div class="story-header">
+          <span class="src-pill">Radio Polar · 7 abril</span>
+          <span class="story-n">03 / 03</span>
+        </div>
+        <div class="story-title">
+          <a href="https://www.radiopolar.com/no-terminaste-educacion-basica-preparate-sence-rendir-examenes-libres" target="_blank">
+            Congreso despacha proyecto de ley sobre convivencia, buen trato y bienestar en comunidades educativas<span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="story-body">El Congreso Nacional despachó hoy el proyecto de ley que regula la convivencia escolar y promueve el buen trato y el bienestar en todas las comunidades educativas del país. La iniciativa establece protocolos obligatorios para prevenir y abordar situaciones de violencia, acoso y maltrato entre estudiantes y entre docentes y alumnos.</div>
+        <a class="read-more" href="https://www.radiopolar.com/no-terminaste-educacion-basica-preparate-sence-rendir-examenes-libres" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
+      </div>
+
+    </div>
+
+    <div class="signoff-block">
+      <span class="signoff-text">¡Que tengas un excelente día!</span>
+      <span style="font-size:20px;color:#9e9a90;">— ☀️</span>
+    </div>
+
+    <div class="efooter">
+      <div class="footer-sources">
+        <strong>Tema:</strong> Educación &nbsp;·&nbsp;
+        <strong>Edición:</strong> Breve (3 noticias del día) &nbsp;·&nbsp;
+        <strong>Fuentes:</strong> OvejeroNoticias, Hoy Noticias, Radio Polar
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-unsub">Digest Matutino · digestmatutino.cl · Cancelar suscripción</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="cta-bar">
+  <p>¿Quieres recibir esto cada mañana con tus temas favoritos?</p>
+  <a class="cta-btn" href="#">Suscribirse gratis →</a>
+</div>
+
+</body>
+</html>
