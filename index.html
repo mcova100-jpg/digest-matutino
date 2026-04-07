@@ -3,220 +3,657 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Digest Matutino — Educación · Martes 7 de abril 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Digest Matutino — Noticias chilenas cada mañana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #e8e4dc; font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 2rem 1rem; }
-
-.topbar {
-  width: 100%; max-width: 640px; display: flex; align-items: center;
-  justify-content: space-between; margin-bottom: 1.5rem;
+:root {
+  --ink: #0f0e0b;
+  --paper: #f5f0e8;
+  --cream: #ede8dc;
+  --accent: #c8392b;
+  --muted: #7a7468;
+  --border: #d4cfc4;
+  --white: #ffffff;
 }
-.brand { font-family: 'Playfair Display', serif; font-size: 15px; color: #0f0e0b; display: flex; align-items: center; gap: 8px; }
-.badge { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: #eeedfe; color: #3c3489; border: 0.5px solid #afa9ec; padding: 4px 10px; border-radius: 3px; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-.email-wrap {
-  width: 100%; max-width: 640px;
-  background: #fff;
-  border-radius: 4px;
-  overflow: hidden;
-  border: 0.5px solid #ccc;
-}
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--ink); border-bottom: 1px solid #2a2820; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--paper); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a { font-size: 13px; color: #9e9a90; text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--paper); }
+.nav-cta { background: var(--accent) !important; color: var(--white) !important; padding: 7px 18px; border-radius: 4px; font-weight: 500 !important; }
 
-/* Window chrome */
-.chrome { background: #f0ede8; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #ddd; }
-.dot { width: 11px; height: 11px; border-radius: 50%; }
-.chrome-label { font-size: 12px; color: #888; margin-left: 8px; font-family: 'DM Sans', sans-serif; }
+/* HERO */
+.hero { min-height: 100vh; background: var(--ink); display: grid; grid-template-rows: 1fr auto; padding-top: 56px; position: relative; overflow: hidden; }
+.hero-noise { position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.6; }
+.hero-gl { position: absolute; top: 0; bottom: 0; width: 1px; background: #ffffff08; }
+.hero-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem 3rem; position: relative; z-index: 1; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); border: 1px solid #c8392b44; padding: 5px 14px; border-radius: 2px; margin-bottom: 2.5rem; animation: fadeUp 0.6s ease both; }
+.eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 88px); font-weight: 600; line-height: 1.05; color: var(--paper); letter-spacing: -1.5px; max-width: 800px; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.1s ease both; }
+.hero-headline em { font-style: italic; color: #c8b89a; }
+.hero-sub { font-size: 17px; font-weight: 300; color: #7a7468; max-width: 480px; line-height: 1.7; margin-bottom: 3rem; animation: fadeUp 0.6s 0.2s ease both; }
+.hero-form { display: flex; gap: 0; max-width: 420px; width: 100%; animation: fadeUp 0.6s 0.3s ease both; }
+.hero-input { flex: 1; padding: 14px 18px; background: #1e1c18; border: 1px solid #3a3730; border-right: none; border-radius: 4px 0 0 4px; font-size: 14px; color: var(--paper); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
+.hero-input::placeholder { color: #4a4840; }
+.hero-input:focus { border-color: var(--accent); }
+.hero-btn { padding: 14px 24px; background: var(--accent); border: none; border-radius: 0 4px 4px 0; font-size: 14px; font-weight: 500; color: var(--white); cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: background 0.2s; }
+.hero-btn:hover { background: #a8301f; }
+.hero-meta { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem; font-size: 12px; color: #4a4840; animation: fadeUp 0.6s 0.4s ease both; }
+.hero-bar { border-top: 1px solid #1e1c18; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; z-index: 1; }
+.hero-bar-item { padding: 1.5rem 2rem; border-right: 1px solid #1e1c18; display: flex; flex-direction: column; gap: 4px; }
+.hero-bar-item:last-child { border-right: none; }
+.hbi-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--paper); line-height: 1; }
+.hbi-label { font-size: 12px; color: #4a4840; }
 
-/* Email meta header */
-.email-meta { padding: 18px 32px 16px; border-bottom: 1px solid #e8e4dc; background: #faf9f6; }
-.meta-row { display: flex; gap: 10px; font-size: 13px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; }
-.meta-label { color: #999; min-width: 40px; }
-.meta-val { color: #1a1a18; font-weight: 500; }
-.meta-date { color: #999; font-size: 12px; }
+/* SECTIONS */
+section { padding: 6rem 2rem; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 1.25rem; }
+.section-sub { font-size: 16px; font-weight: 300; color: var(--muted); max-width: 520px; line-height: 1.7; }
 
-.subject-row { padding: 14px 32px 0; background: #faf9f6; border-bottom: 1px solid #e8e4dc; }
-.subject-text { font-size: 15px; font-weight: 500; color: #0f0e0b; padding-bottom: 14px; }
+/* HOW IT WORKS */
+.how { background: var(--white); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 4rem; border: 1px solid var(--border); }
+.step { padding: 2.5rem; border-right: 1px solid var(--border); }
+.step:last-child { border-right: none; }
+.step-num { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 600; line-height: 1; color: var(--cream); margin-bottom: 1.5rem; display: block; }
+.step-title { font-size: 17px; font-weight: 500; margin-bottom: 0.75rem; }
+.step-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.step-accent { width: 32px; height: 3px; background: var(--accent); margin-bottom: 1.5rem; }
 
-/* Email body */
-.email-body { background: #f5f0e8; }
+/* TOPICS SECTION */
+.topics-section { background: var(--paper); }
+.topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 4rem; }
+.topic-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem; }
+.topic-chip { padding: 8px 16px; border: 1px solid var(--border); border-radius: 2px; font-size: 13px; color: var(--muted); cursor: pointer; transition: all 0.15s; background: var(--white); }
+.topic-chip:hover, .topic-chip.on { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.sources-list { margin-top: 1rem; }
+.source-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.source-row:last-child { border-bottom: none; }
+.src-name { font-weight: 500; }
+.src-url { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+.src-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; background: #eeedfe; color: #3c3489; border-radius: 2px; }
 
-/* Header */
-.eheader { background: #0f0e0b; padding: 36px 32px 32px; border-bottom: 3px solid #c8392b; }
-.brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-.brand-name { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #7a7468; font-family: 'DM Sans', sans-serif; }
-.edition-num { font-size: 11px; color: #5a5650; font-family: 'DM Sans', sans-serif; }
-.main-headline { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: #f5f0e8; line-height: 1.2; letter-spacing: -0.3px; margin-bottom: 10px; }
-.main-sub { font-size: 13px; color: #7a7468; font-family: 'DM Sans', sans-serif; }
+/* EMAIL PREVIEW */
+.preview-section { background: var(--ink); padding: 6rem 2rem; }
+.preview-section .section-title { color: var(--paper); }
+.preview-section .section-sub { color: #7a7468; }
+.preview-wrap { margin-top: 4rem; max-width: 640px; border: 1px solid #2a2820; border-radius: 4px; overflow: hidden; }
+.pv-bar { background: #1a1816; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #2a2820; }
+.pv-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.pv-body { background: #f5f0e8; }
+.pv-header { background: #0f0e0b; padding: 32px; text-align: center; }
+.pv-header-brand { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7a7468; margin-bottom: 16px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.pv-brand-line { flex: 1; height: 1px; background: #2a2820; max-width: 60px; }
+.pv-header-title { font-family: 'Playfair Display', serif; font-size: 22px; color: #f5f0e8; line-height: 1.3; margin-bottom: 8px; }
+.pv-header-date { font-size: 12px; color: #5a5650; }
+.pv-content { padding: 28px 32px; }
+.pv-toc { background: #ede8dc; padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid #c8392b; }
+.pv-toc-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7468; margin-bottom: 8px; font-weight: 500; }
+.pv-toc-item { font-size: 12px; color: #4a4840; padding: 2px 0; }
+.pv-story { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #d4cfc4; }
+.pv-story:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.pv-src { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3c3489; margin-bottom: 6px; }
+.pv-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: #0f0e0b; line-height: 1.35; margin-bottom: 7px; text-decoration: none; display: block; }
+.pv-title:hover { color: #3c3489; }
+.pv-text { font-size: 12.5px; color: #5a5650; line-height: 1.65; font-family: Georgia, serif; }
+.pv-footer { padding: 20px 32px; background: #ede8dc; border-top: 1px solid #d4cfc4; text-align: center; font-size: 11px; color: #9e9a90; line-height: 1.8; }
 
-/* TOC */
-.toc { background: #ede8dc; border-left: 3px solid #c8392b; padding: 16px 20px; margin: 24px 32px 0; }
-.toc-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7468; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; }
-.toc-item { font-size: 12px; color: #4a4840; padding: 3px 0; display: flex; gap: 10px; font-family: 'DM Sans', sans-serif; }
-.toc-n { color: #c8392b; font-weight: 500; min-width: 20px; }
+/* SUBSCRIBE FORM */
+.subscribe-section { background: var(--white); padding: 6rem 2rem; }
+.subscribe-inner { max-width: 680px; margin: 0 auto; }
+.sub-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 600; color: var(--ink); letter-spacing: -0.5px; margin-bottom: 0.75rem; line-height: 1.15; }
+.sub-desc { font-size: 16px; color: var(--muted); margin-bottom: 3rem; font-weight: 300; }
+.form-group { margin-bottom: 2rem; }
+.form-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.form-input { width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 2px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--paper); outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: var(--ink); }
 
-/* Stories */
-.stories { padding: 24px 32px 8px; }
-.story { padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid #d4cfc4; }
-.story:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+/* TOPICS CHIPS */
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.fchip { padding: 8px 14px; border: 1px solid var(--border); border-radius: 2px; background: var(--paper); cursor: pointer; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--muted); transition: all 0.15s; }
+.fchip:hover { border-color: var(--ink); color: var(--ink); }
+.fchip.on { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.custom-row { display: flex; gap: 0; margin-top: 12px; }
+.custom-input { flex: 1; padding: 11px 14px; border: 1px solid var(--border); border-right: none; border-radius: 2px 0 0 2px; font-size: 13px; font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); outline: none; }
+.custom-add { padding: 11px 18px; border: 1px solid var(--border); border-radius: 0 2px 2px 0; background: var(--white); font-size: 13px; font-family: 'DM Sans', sans-serif; cursor: pointer; color: var(--muted); transition: all 0.15s; }
+.custom-add:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.custom-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ctag { display: flex; align-items: center; gap: 6px; padding: 4px 10px; background: var(--ink); color: var(--paper); font-size: 12px; border-radius: 2px; }
+.ctag-rm { cursor: pointer; opacity: 0.5; font-size: 14px; }
+.ctag-rm:hover { opacity: 1; }
 
-.story-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.src-pill { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3c3489; background: #eeedfe; border: 0.5px solid #afa9ec; padding: 3px 8px; border-radius: 3px; font-family: 'DM Sans', sans-serif; }
-.story-n { font-size: 11px; color: #9e9a90; font-family: 'DM Sans', sans-serif; }
+/* SOURCES */
+.src-cat { margin-bottom: 20px; }
+.src-cat-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; display: block; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.src-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--border); }
+.src-check { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+.src-check:nth-child(even) { border-right: none; }
+.src-check:hover { background: var(--cream); }
+.src-check.on { background: #f0efe8; }
+.sc-left { display: flex; flex-direction: column; gap: 2px; }
+.sc-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.sc-url { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+.sc-check { width: 18px; height: 18px; border: 1px solid var(--border); border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+.src-check.on .sc-check { background: var(--ink); border-color: var(--ink); }
+.checkmark { font-size: 11px; color: var(--paper); display: none; }
+.src-check.on .checkmark { display: block; }
+.src-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.src-count { font-size: 12px; color: var(--muted); }
+.src-btns { display: flex; gap: 12px; }
+.src-btn-link { background: none; border: none; font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0; }
+.src-btn-link.all { color: var(--accent); }
+.src-btn-link.clear { color: var(--muted); }
 
-.story-title a {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px; font-weight: 600; color: #0f0e0b; line-height: 1.35;
-  text-decoration: none; display: block; margin-bottom: 10px;
-  transition: color 0.15s;
-}
-.story-title a:hover { color: #3c3489; }
-.arrow { font-size: 12px; color: #7f77dd; margin-left: 5px; }
-.story-body { font-size: 13.5px; color: #5a5650; line-height: 1.7; font-family: Georgia, serif; margin-bottom: 10px; }
-.read-more { font-size: 12px; font-weight: 500; color: #534ab7; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.read-more:hover { text-decoration: underline; }
-.read-line { width: 16px; height: 1px; background: #534ab7; display: inline-block; }
+/* QUANTITY */
+.qty-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.qty-btn { padding: 14px 8px; border: 1px solid var(--border); border-radius: 2px; background: var(--paper); cursor: pointer; font-family: 'DM Sans', sans-serif; color: var(--muted); text-align: center; transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.qty-btn:hover { border-color: var(--ink); color: var(--ink); }
+.qty-btn.on { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.qty-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; line-height: 1; }
+.qty-label { font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; }
 
-/* Signoff */
-.signoff-block { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-top: 3px solid #0f0e0b; margin-top: 8px; }
-.signoff-text { font-size: 14px; color: #5a5650; font-family: Georgia, serif; font-style: italic; }
-.signoff-sun { font-size: 20px; color: #9e9a90; }
+/* SUBMIT */
+.divider-line { height: 1px; background: var(--border); margin: 2rem 0; }
+.submit-btn { width: 100%; padding: 16px; background: var(--accent); border: none; border-radius: 2px; font-size: 15px; font-weight: 500; color: var(--white); font-family: 'DM Sans', sans-serif; cursor: pointer; letter-spacing: 0.02em; transition: background 0.2s; }
+.submit-btn:hover { background: #a8301f; }
+.submit-btn:disabled { background: #c4bdb3; cursor: not-allowed; }
+.status-box { display: none; margin-top: 1.5rem; padding: 16px 20px; border-radius: 2px; font-size: 14px; }
+.status-box.info { background: #eeedfe; border-left: 3px solid #534ab7; color: #3c3489; }
+.status-box.success { background: #e1f5ee; border-left: 3px solid #1d9e75; color: #085041; }
+.status-box.error { background: #fcebeb; border-left: 3px solid #e24b4a; color: #501313; }
+.status-log { font-family: 'DM Mono', monospace; font-size: 12px; margin-top: 8px; opacity: 0.7; white-space: pre-wrap; }
+.spin { display: inline-block; width: 13px; height: 13px; border: 2px solid #afa9ec; border-top-color: #534ab7; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
 
-/* Footer */
-.efooter { background: #ede8dc; border-top: 1px solid #d4cfc4; padding: 20px 32px; }
-.footer-sources { font-size: 11px; color: #7a7468; font-family: 'DM Sans', sans-serif; line-height: 1.8; }
-.footer-sources strong { color: #5a5650; }
-.footer-divider { height: 1px; background: #d4cfc4; margin: 10px 0; }
-.footer-unsub { font-size: 11px; color: #9e9a90; text-align: center; font-family: 'DM Sans', sans-serif; }
+/* FOOTER */
+footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align: center; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--paper); margin-bottom: 0.5rem; }
+.footer-sub { font-size: 13px; margin-bottom: 2rem; }
+.footer-copy { font-size: 12px; border-top: 1px solid #1e1c18; padding-top: 1.5rem; margin-top: 1.5rem; }
 
-/* CTA bottom */
-.cta-bar { margin-top: 2rem; text-align: center; padding-bottom: 2rem; }
-.cta-bar p { font-size: 13px; color: #7a7468; margin-bottom: 12px; }
-.cta-btn { display: inline-block; background: #c8392b; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 3px; text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s; }
-.cta-btn:hover { background: #a8301f; }
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.reveal { opacity: 1; }
+.reveal.animate { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.animate.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 640px) {
-  .eheader, .stories, .signoff-block, .efooter, .toc { padding-left: 20px; padding-right: 20px; }
-  .email-meta, .subject-row { padding-left: 20px; padding-right: 20px; }
-  .main-headline { font-size: 22px; }
-  .toc { margin-left: 20px; margin-right: 20px; }
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .steps { grid-template-columns: 1fr; }
+  .step { border-right: none; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .topics-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-bar { grid-template-columns: 1fr; }
+  .hero-bar-item { border-right: none; border-bottom: 1px solid #1e1c18; }
+  .qty-row { grid-template-columns: repeat(3, 1fr); }
+  .nav-links { display: none; }
+  .src-grid { grid-template-columns: 1fr; }
+  .src-check { border-right: none !important; }
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <span class="brand">☀️ Digest Matutino</span>
-  <span class="badge">Vista previa · Edición Breve</span>
-</div>
-
-<div class="email-wrap">
-  <!-- Window chrome -->
-  <div class="chrome">
-    <span class="dot" style="background:#e24b4a"></span>
-    <span class="dot" style="background:#ef9f27"></span>
-    <span class="dot" style="background:#639922"></span>
-    <span class="chrome-label">Bandeja de entrada — tu@correo.com</span>
+<nav>
+  <a class="nav-brand" href="#"><span>☀️</span> Digest Matutino</a>
+  <div class="nav-links">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#medios">Medios</a>
+    <a href="#preview">Preview</a>
+    <a href="#suscribirse" class="nav-cta">Suscribirse</a>
   </div>
+</nav>
 
-  <!-- Email meta -->
-  <div class="email-meta">
-    <div class="meta-row"><span class="meta-label">De:</span><span class="meta-val">Digest Matutino &lt;hola@digestmatutino.cl&gt;</span></div>
-    <div class="meta-row"><span class="meta-label">Para:</span><span class="meta-val">tu@correo.com</span></div>
-    <div class="meta-row"><span class="meta-label">Fecha:</span><span class="meta-date">Martes, 7 de abril de 2026 — 07:00 AM</span></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-gl" style="left:25%"></div>
+  <div class="hero-gl" style="left:50%"></div>
+  <div class="hero-gl" style="left:75%"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Noticias chilenas · Cada mañana</div>
+    <h1 class="hero-headline">Tu resumen de<br><em>prensa chilena</em><br>al despertar</h1>
+    <p class="hero-sub">Selecciona tus temas y medios favoritos. Recibe un email editorial curado cada mañana, directo en tu bandeja de entrada.</p>
+    <div class="hero-form">
+      <input class="hero-input" type="email" placeholder="tu@correo.com" id="heroEmail">
+      <button class="hero-btn" onclick="scrollToSub()">Comenzar →</button>
+    </div>
+    <div class="hero-meta">
+      <span>✓ Gratis</span>
+      <span style="color:#2a2820">·</span>
+      <span>✓ Sin spam</span>
+      <span style="color:#2a2820">·</span>
+      <span>✓ Cancela cuando quieras</span>
+    </div>
   </div>
-  <div class="subject-row">
-    <div class="subject-text">Tu Digest Matutino — martes, 7 de abril de 2026</div>
+  <div class="hero-bar">
+    <div class="hero-bar-item"><span class="hbi-num">30+</span><span class="hbi-label">Medios chilenos monitoreados</span></div>
+    <div class="hero-bar-item"><span class="hbi-num">3–∞</span><span class="hbi-label">Noticias configurables por tema</span></div>
+    <div class="hero-bar-item"><span class="hbi-num">100%</span><span class="hbi-label">Fuentes chilenas verificadas</span></div>
   </div>
+</section>
 
-  <!-- Email body -->
-  <div class="email-body">
-
-    <div class="eheader">
-      <div class="brand-row">
-        <span class="brand-name">Digest Matutino</span>
-        <span class="edition-num">Edición #142 · Educación · Breve</span>
+<!-- CÓMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="section-inner">
+    <span class="section-label reveal">El proceso</span>
+    <h2 class="section-title reveal">Tres pasos para tu<br>digest perfecto</h2>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-accent"></div>
+        <div class="step-title">Elige tus temas y fuentes</div>
+        <div class="step-body">Selecciona de entre 12 categorías — política, economía, tecnología, deportes y más. Elige entre 30 medios chilenos organizados por tipo: prensa, TV, radio, economía e investigación.</div>
       </div>
-      <div class="main-headline">Lo que debes saber sobre educación en Chile hoy</div>
-      <div class="main-sub">3 historias seleccionadas · Martes 7 de abril de 2026</div>
-    </div>
-
-    <div class="toc">
-      <div class="toc-label">En esta edición</div>
-      <div class="toc-item"><span class="toc-n">01</span><span>Día de la Educación Rural: homenaje a Gabriela Mistral</span></div>
-      <div class="toc-item"><span class="toc-n">02</span><span>Los SLEP y el retorno del Estado a la educación pública</span></div>
-      <div class="toc-item"><span class="toc-n">03</span><span>Senado busca frenar la violencia escolar</span></div>
-    </div>
-
-    <div class="stories">
-
-      <div class="story">
-        <div class="story-header">
-          <span class="src-pill">OvejeroNoticias</span>
-          <span class="story-n">01 / 03</span>
-        </div>
-        <div class="story-title">
-          <a href="https://www.ovejeronoticias.cl/2026/04/red-de-escuelas-rurales-en-magallanes-garantiza-la-educacion-para-213-estudiantes/" target="_blank">
-            Chile celebra el Día de la Educación Rural en homenaje a Gabriela Mistral<span class="arrow">↗</span>
-          </a>
-        </div>
-        <div class="story-body">Este martes 7 de abril se conmemora la fecha instaurada en 1998 para coincidir con el natalicio de Gabriela Mistral, primera latinoamericana en ganar el Premio Nobel de Literatura y emblema de la docencia rural chilena. En Magallanes, una red de escuelas garantiza educación a 213 estudiantes en zonas de aislamiento geográfico y clima extremo, con actividades especiales en cada establecimiento.</div>
-        <a class="read-more" href="https://www.ovejeronoticias.cl/2026/04/red-de-escuelas-rurales-en-magallanes-garantiza-la-educacion-para-213-estudiantes/" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-accent"></div>
+        <div class="step-title">IA curada cada mañana</div>
+        <div class="step-body">Cada mañana, nuestra IA busca y selecciona las noticias más relevantes del día. Tú defines cuántas quieres: 3, 5, 7, 10 o todas las disponibles por tema.</div>
       </div>
-
-      <div class="story">
-        <div class="story-header">
-          <span class="src-pill">El Mostrador</span>
-          <span class="story-n">02 / 03</span>
-        </div>
-        <div class="story-title">
-          <a href="https://www.elmostrador.cl/noticias/opinion/columnas/2026/04/03/el-retorno-del-estado-una-oportunidad-para-reconstruir-la-educacion-publica/" target="_blank">
-            El retorno del Estado: los SLEP redefinen la educación pública tras 46 años de gestión municipal<span class="arrow">↗</span>
-          </a>
-        </div>
-        <div class="story-body">El traspaso de los establecimientos escolares desde los municipios al Estado, a través de los Servicios Locales de Educación Pública (SLEP), es considerado uno de los cambios estructurales más profundos del sistema educativo chileno en décadas. El éxito del modelo dependerá de su capacidad de responder a las necesidades reales de estudiantes, docentes y familias con criterios de equidad y transparencia.</div>
-        <a class="read-more" href="https://www.elmostrador.cl/noticias/opinion/columnas/2026/04/03/el-retorno-del-estado-una-oportunidad-para-reconstruir-la-educacion-publica/" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-accent"></div>
+        <div class="step-title">En tu correo al despertar</div>
+        <div class="step-body">A las 7:00 AM el digest llega a tu bandeja de entrada. Diseño editorial limpio y links directos a cada artículo original.</div>
       </div>
-
-      <div class="story">
-        <div class="story-header">
-          <span class="src-pill">Senado de Chile</span>
-          <span class="story-n">03 / 03</span>
-        </div>
-        <div class="story-title">
-          <a href="https://www.ovejeronoticias.cl/2026/04/buscan-impulsar-acuerdo-legislativo-en-el-senado-que-permita-enfrentar-la-violencia-escolar/" target="_blank">
-            Senado impulsa acuerdo legislativo para enfrentar el aumento de violencia escolar<span class="arrow">↗</span>
-          </a>
-        </div>
-        <div class="story-body">La presidenta del Senado, Paulina Núñez, y el Defensor de la Niñez, Anuar Quesille, se reunieron para analizar el incremento de situaciones de violencia en establecimientos educacionales. El Senado busca avanzar en proyectos concretos con participación de la Defensoría de la Niñez y medidas de seguridad escolar con apoyo ciudadano transversal.</div>
-        <a class="read-more" href="https://www.ovejeronoticias.cl/2026/04/buscan-impulsar-acuerdo-legislativo-en-el-senado-que-permita-enfrentar-la-violencia-escolar/" target="_blank"><span class="read-line"></span>Leer artículo completo</a>
-      </div>
-
     </div>
-
-    <div class="signoff-block">
-      <span class="signoff-text">¡Que tengas un excelente día!</span>
-      <span class="signoff-sun">— ☀️</span>
-    </div>
-
-    <div class="efooter">
-      <div class="footer-sources">
-        <strong>Tema:</strong> Educación &nbsp;·&nbsp;
-        <strong>Edición:</strong> Breve (3 noticias) &nbsp;·&nbsp;
-        <strong>Fuentes:</strong> OvejeroNoticias, El Mostrador, Senado de Chile
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-unsub">Digest Matutino · digestmatutino.cl · Cancelar suscripción</div>
-    </div>
-
   </div>
-</div>
+</section>
 
-<div class="cta-bar">
-  <p>¿Quieres recibir esto cada mañana con tus temas favoritos?</p>
-  <a class="cta-btn" href="#">Suscribirse gratis →</a>
-</div>
+<!-- TEMAS Y FUENTES -->
+<section class="topics-section" id="medios">
+  <div class="section-inner">
+    <div class="topics-grid">
+      <div class="reveal">
+        <span class="section-label">Temas disponibles</span>
+        <h2 class="section-title">Lo que te importa,<br>sin el ruido</h2>
+        <p class="section-sub">Elige uno o varios temas. Puedes agregar categorías personalizadas.</p>
+        <div class="topic-chips">
+          <span class="topic-chip on">Política</span>
+          <span class="topic-chip">Economía</span>
+          <span class="topic-chip on">Tecnología</span>
+          <span class="topic-chip">Deportes</span>
+          <span class="topic-chip on">Educación</span>
+          <span class="topic-chip">Ciencia</span>
+          <span class="topic-chip">Salud</span>
+          <span class="topic-chip">Cultura</span>
+          <span class="topic-chip">Medio Ambiente</span>
+          <span class="topic-chip">Internacional</span>
+          <span class="topic-chip">Negocios</span>
+          <span class="topic-chip">Entretenimiento</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-label">30+ medios monitoreados</span>
+        <div class="sources-list">
+          <div class="source-row"><span class="src-name">El Mercurio</span><span class="src-url">emol.com</span></div>
+          <div class="source-row"><span class="src-name">La Tercera</span><span class="src-url">latercera.com</span></div>
+          <div class="source-row"><span class="src-name">El Mostrador</span><span class="src-url">elmostrador.cl</span></div>
+          <div class="source-row"><span class="src-name">Diario Financiero</span><span class="src-url">df.cl</span></div>
+          <div class="source-row"><span class="src-name">CIPER Chile</span><span class="src-url">ciperchile.cl</span></div>
+          <div class="source-row"><span class="src-name">CNN Chile</span><span class="src-url">cnnchile.com</span></div>
+          <div class="source-row"><span class="src-name">Cooperativa</span><span class="src-url">cooperativa.cl</span></div>
+          <div class="source-row"><span class="src-name">The Clinic</span><span class="src-url">theclinic.cl</span></div>
+          <div class="source-row" style="border-bottom:none;"><span class="src-name">BioBioChile</span><span class="src-url">biobiochile.cl</span></div>
+          <div class="source-row" style="border-bottom:none; color:var(--muted); font-size:13px;"><span>+ 21 medios más en el formulario</span><span class="src-badge">30 total</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- EMAIL PREVIEW -->
+<section class="preview-section" id="preview">
+  <div class="section-inner">
+    <span class="section-label reveal">Vista previa</span>
+    <h2 class="section-title reveal">Así llega a tu<br>bandeja de entrada</h2>
+    <p class="section-sub reveal" style="color:#7a7468">Diseño editorial limpio, fácil de leer en cualquier dispositivo.</p>
+    <div class="preview-wrap reveal">
+      <div class="pv-bar">
+        <span class="pv-dot" style="background:#e24b4a"></span>
+        <span class="pv-dot" style="background:#ef9f27"></span>
+        <span class="pv-dot" style="background:#639922"></span>
+        <span style="font-size:11px;color:#4a4840;margin-left:8px;font-family:'DM Sans',sans-serif;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee9a9bae8d819c9c8b81c08d8183">[email&#160;protected]</a> — Bandeja de entrada</span>
+      </div>
+      <div class="pv-body">
+        <div class="pv-header">
+          <div class="pv-header-brand"><span class="pv-brand-line"></span>Digest Matutino<span class="pv-brand-line"></span></div>
+          <div class="pv-header-title">Lo que debes saber sobre<br>educación en Chile hoy</div>
+          <div class="pv-header-date">Martes, 7 de abril de 2026 · Edición #142</div>
+        </div>
+        <div class="pv-content">
+          <div class="pv-toc">
+            <div class="pv-toc-label">En esta edición</div>
+            <div class="pv-toc-item">01 · Día de la Educación Rural en homenaje a Gabriela Mistral</div>
+            <div class="pv-toc-item">02 · Los SLEP y el retorno del Estado a la educación pública</div>
+            <div class="pv-toc-item">03 · Senado busca frenar la violencia escolar</div>
+          </div>
+          <div class="pv-story">
+            <div class="pv-src">OvejeroNoticias</div>
+            <a class="pv-title" href="https://www.ovejeronoticias.cl/2026/04/red-de-escuelas-rurales-en-magallanes-garantiza-la-educacion-para-213-estudiantes/">Chile celebra el Día de la Educación Rural en homenaje a Gabriela Mistral ↗</a>
+            <div class="pv-text">Este martes se conmemora la fecha instaurada en 1998 para coincidir con el natalicio de Gabriela Mistral. En Magallanes, una red de escuelas garantiza educación a 213 estudiantes en zonas de aislamiento geográfico extremo.</div>
+          </div>
+          <div class="pv-story">
+            <div class="pv-src">El Mostrador</div>
+            <a class="pv-title" href="https://www.elmostrador.cl/noticias/opinion/columnas/2026/04/03/el-retorno-del-estado-una-oportunidad-para-reconstruir-la-educacion-publica/">Los SLEP redefinen la educación pública tras 46 años de gestión municipal ↗</a>
+            <div class="pv-text">El traspaso de colegios desde los municipios al Estado es uno de los cambios más profundos del sistema educativo chileno. El éxito dependerá de responder a las necesidades reales de estudiantes, docentes y familias.</div>
+          </div>
+          <div class="pv-story">
+            <div class="pv-src">Senado de Chile</div>
+            <a class="pv-title" href="https://www.ovejeronoticias.cl/2026/04/buscan-impulsar-acuerdo-legislativo-en-el-senado-que-permita-enfrentar-la-violencia-escolar/">Senado impulsa acuerdo para enfrentar el aumento de violencia escolar ↗</a>
+            <div class="pv-text">La presidenta del Senado y el Defensor de la Niñez analizaron el alarmante incremento de incidentes violentos en establecimientos educacionales. Encuestas revelan fuerte apoyo ciudadano a medidas de seguridad escolar.</div>
+          </div>
+        </div>
+        <div class="pv-footer">Digest Matutino · Educación · martes 7 de abril de 2026<br>Fuentes: El Mostrador · OvejeroNoticias · Senado de Chile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIBE FORM -->
+<section class="subscribe-section" id="suscribirse">
+  <div class="subscribe-inner">
+    <span class="section-label reveal">Suscribirse</span>
+    <h2 class="sub-title reveal">Empieza a recibir<br>tu digest mañana</h2>
+    <p class="sub-desc reveal">Configura tus preferencias y te enviamos el primer digest hoy.</p>
+
+    <div class="form-group reveal">
+      <label class="form-label">Tu correo electrónico</label>
+      <input class="form-input" type="email" id="subEmail" placeholder="tu@correo.com">
+    </div>
+
+    <div class="form-group reveal">
+      <label class="form-label">Temas de interés</label>
+      <div class="chips-row" id="topicChips"></div>
+      <div class="custom-row">
+        <input class="custom-input" type="text" id="customIn" placeholder="Agregar tema personalizado...">
+        <button class="custom-add" onclick="addCustom()">+ Agregar</button>
+      </div>
+      <div class="custom-tags" id="custTags"></div>
+    </div>
+
+    <div class="form-group reveal">
+      <label class="form-label">Medios a monitorear</label>
+      <div id="srcCats"></div>
+      <div class="src-actions">
+        <span class="src-count" id="srcCount">3 medios seleccionados</span>
+        <div class="src-btns">
+          <button class="src-btn-link all" onclick="selectAllSrc()">Seleccionar todos</button>
+          <button class="src-btn-link clear" onclick="clearAllSrc()">Limpiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group reveal">
+      <label class="form-label">Cantidad de noticias por tema</label>
+      <div class="qty-row">
+        <button class="qty-btn" data-qty="3" onclick="pickQty(this)"><span class="qty-num">3</span><span class="qty-label">Breve</span></button>
+        <button class="qty-btn on" data-qty="5" onclick="pickQty(this)"><span class="qty-num">5</span><span class="qty-label">Estándar</span></button>
+        <button class="qty-btn" data-qty="7" onclick="pickQty(this)"><span class="qty-num">7</span><span class="qty-label">Amplio</span></button>
+        <button class="qty-btn" data-qty="10" onclick="pickQty(this)"><span class="qty-num">10</span><span class="qty-label">Completo</span></button>
+        <button class="qty-btn" data-qty="0" onclick="pickQty(this)"><span class="qty-num" style="font-size:18px;padding-top:4px;">Todo</span><span class="qty-label">Sin límite</span></button>
+      </div>
+    </div>
+
+    <div class="divider-line reveal"></div>
+    <button class="submit-btn reveal" id="subBtn" onclick="sendDigest()">Enviar mi digest de hoy →</button>
+    <div class="status-box" id="statusBox">
+      <div id="statusMsg"></div>
+      <div class="status-log" id="statusLog"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">☀️ Digest Matutino</div>
+  <div class="footer-sub">Noticias chilenas cada mañana, en tu idioma</div>
+  <div class="footer-copy">© 2026 Digest Matutino · Hecho con ❤️ en Chile</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const TOPICS = ['Política','Economía','Tecnología','Deportes','Cultura','Ciencia','Salud','Educación','Medio Ambiente','Internacional','Negocios','Entretenimiento'];
+
+const SOURCE_CATS = [
+  { cat: 'Prensa & Portales Nacionales', sources: [
+    {name:'El Mercurio', url:'emol.com'},
+    {name:'La Tercera', url:'latercera.com'},
+    {name:'El Mostrador', url:'elmostrador.cl'},
+    {name:'BioBioChile', url:'biobiochile.cl'},
+    {name:'La Segunda', url:'lasegunda.com'},
+    {name:'El Líbero', url:'ellibero.cl'},
+    {name:'The Clinic', url:'theclinic.cl'},
+    {name:'El Desconcierto', url:'eldesconcierto.cl'},
+    {name:'La Nación', url:'lanacion.cl'},
+    {name:'El Ciudadano', url:'elciudadano.com'},
+    {name:'Interferencia', url:'interferencia.cl'},
+    {name:'Ex-Ante', url:'ex-ante.cl'},
+  ]},
+  { cat: 'Televisión & Multimedia', sources: [
+    {name:'T13', url:'t13.cl'},
+    {name:'24horas (TVN)', url:'24horas.cl'},
+    {name:'CNN Chile', url:'cnnchile.com'},
+    {name:'Meganoticias', url:'meganoticias.cl'},
+    {name:'Chilevisión', url:'chilevision.cl'},
+    {name:'Canal 13', url:'canal13.cl'},
+    {name:'La Red', url:'lared.cl'},
+  ]},
+  { cat: 'Radio', sources: [
+    {name:'Cooperativa', url:'cooperativa.cl'},
+    {name:'Radio U. de Chile', url:'radio.uchile.cl'},
+    {name:'ADN Radio', url:'adnradio.cl'},
+    {name:'Radio Infinita', url:'radioinfinita.cl'},
+    {name:'Radio Duna', url:'duna.cl'},
+    {name:'Radio Agricultura', url:'radioagricultura.cl'},
+  ]},
+  { cat: 'Economía & Negocios', sources: [
+    {name:'Diario Financiero', url:'df.cl'},
+    {name:'Pulso', url:'pulso.cl'},
+    {name:'Pauta', url:'pauta.cl'},
+    {name:'América Economía', url:'americaeconomia.com'},
+  ]},
+  { cat: 'Investigación & Análisis', sources: [
+    {name:'CIPER Chile', url:'ciperchile.cl'},
+    {name:'El Dinamo', url:'eldinamo.cl'},
+    {name:'Radio Polar', url:'radiopolar.com'},
+    {name:'Puranoticia', url:'puranoticia.cl'},
+  ]},
+];
+
+let newsQty = 5;
+const selTopics = new Set();
+const custTopics = [];
+const selSources = new Set(['El Mercurio','La Tercera','El Mostrador']);
+
+function pickQty(el) {
+  document.querySelectorAll('.qty-btn').forEach(b => b.classList.remove('on'));
+  el.classList.add('on');
+  newsQty = parseInt(el.dataset.qty);
+}
+
+function renderTopics() {
+  document.getElementById('topicChips').innerHTML = TOPICS.map(t =>
+    '<span class="fchip' + (selTopics.has(t) ? ' on' : '') + '" data-t="' + t + '" onclick="toggleTopic(this)">' + t + '</span>'
+  ).join('');
+}
+
+function toggleTopic(el) {
+  var t = el.dataset.t;
+  if (selTopics.has(t)) { selTopics.delete(t); el.classList.remove('on'); }
+  else { selTopics.add(t); el.classList.add('on'); }
+}
+
+function updateSrcCount() {
+  var el = document.getElementById('srcCount');
+  if (el) el.textContent = selSources.size + ' medio' + (selSources.size !== 1 ? 's' : '') + ' seleccionado' + (selSources.size !== 1 ? 's' : '');
+}
+
+function renderSources() {
+  var container = document.getElementById('srcCats');
+  if (!container) return;
+  var html = '';
+  SOURCE_CATS.forEach(function(cat) {
+    html += '<div class="src-cat"><span class="src-cat-label">' + cat.cat + '</span><div class="src-grid">';
+    cat.sources.forEach(function(s) {
+      html += '<div class="src-check' + (selSources.has(s.name) ? ' on' : '') + '" data-s="' + s.name + '" onclick="toggleSrc(this)">' +
+        '<div class="sc-left"><span class="sc-name">' + s.name + '</span><span class="sc-url">' + s.url + '</span></div>' +
+        '<div class="sc-check"><span class="checkmark">&#10003;</span></div>' +
+        '</div>';
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+  updateSrcCount();
+}
+
+function toggleSrc(el) {
+  var s = el.dataset.s;
+  if (selSources.has(s)) { selSources.delete(s); el.classList.remove('on'); }
+  else { selSources.add(s); el.classList.add('on'); }
+  updateSrcCount();
+}
+
+function selectAllSrc() {
+  SOURCE_CATS.forEach(function(cat) { cat.sources.forEach(function(s) { selSources.add(s.name); }); });
+  renderSources();
+}
+
+function clearAllSrc() {
+  selSources.clear();
+  renderSources();
+}
+
+document.getElementById('customIn').addEventListener('keydown', function(e) { if (e.key === 'Enter') addCustom(); });
+
+function addCustom() {
+  var inp = document.getElementById('customIn');
+  var v = inp.value.trim();
+  if (!v || custTopics.includes(v)) { inp.value = ''; return; }
+  custTopics.push(v); inp.value = ''; renderCustTags();
+}
+
+function removeCust(t) {
+  var i = custTopics.indexOf(t);
+  if (i > -1) custTopics.splice(i, 1);
+  renderCustTags();
+}
+
+function renderCustTags() {
+  document.getElementById('custTags').innerHTML = custTopics.map(function(t) {
+    return '<span class="ctag">' + t + '<span class="ctag-rm" onclick="removeCust(\'' + t + '\')">&#215;</span></span>';
+  }).join('');
+}
+
+function scrollToSub() {
+  var email = document.getElementById('heroEmail').value;
+  if (email) document.getElementById('subEmail').value = email;
+  document.getElementById('suscribirse').scrollIntoView({ behavior: 'smooth' });
+}
+
+function showStatus(type, msg, log) {
+  var el = document.getElementById('statusBox');
+  el.style.display = 'block';
+  el.className = 'status-box ' + type;
+  document.getElementById('statusMsg').innerHTML = msg;
+  document.getElementById('statusLog').textContent = log || '';
+}
+
+var logLines = [];
+function pushLog(m) { logLines.push(m); document.getElementById('statusLog').textContent = logLines.join('\n'); }
+
+function buildPrompt(today, topics, sources, qty) {
+  var qtyStr = qty === 0 ? 'todas las noticias relevantes que encuentres' : 'exactamente ' + qty + ' noticia' + (qty > 1 ? 's' : '') + ' por tema';
+  return 'Hoy es ' + today + '. Busca en la web las noticias más importantes para estos temas: ' + topics + '. Prioriza medios chilenos: ' + sources + '. REGLA FUNDAMENTAL: incluye ÚNICAMENTE noticias publicadas HOY ' + today + '. No incluyas noticias de días anteriores bajo ninguna circunstancia. Si no encuentras noticias de hoy para un tema, indícalo claramente. Incluye ' + qtyStr + ', cada una con titular, resumen de 2 oraciones, nombre del medio y fecha de publicación. Formato: cuerpo HTML profesional de newsletter (sin html/body), estilos inline, tipografía Georgia. Encabezado: "Tu Digest Matutino — ' + today + '". Cierra con "¡Que tengas un excelente día!" Todo en español. Los titulares deben ser links <a href="url" style="color:#0f0e0b">título</a> con la URL real cuando la tengas.';
+}
+
+function sendDigest() {
+  var email = document.getElementById('subEmail').value.trim();
+  if (!email || !email.includes('@')) { showStatus('error', 'Por favor ingresa un correo válido.'); return; }
+  var allTopics = Array.from(selTopics).concat(custTopics);
+  if (!allTopics.length) { showStatus('error', 'Selecciona al menos un tema.'); return; }
+  if (!selSources.size) { showStatus('error', 'Selecciona al menos un medio.'); return; }
+
+  var btn = document.getElementById('subBtn');
+  btn.disabled = true; logLines = [];
+  showStatus('info', '<span class="spin"></span> Buscando noticias de hoy...');
+
+  var today = new Date().toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  var topicsStr = allTopics.join(', ');
+  var sourcesStr = Array.from(selSources).join(', ');
+
+  pushLog('Temas: ' + topicsStr);
+  pushLog('Fuentes: ' + sourcesStr);
+  pushLog('Noticias por tema: ' + (newsQty === 0 ? 'todas' : newsQty));
+  pushLog('Buscando noticias...');
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 6000,
+      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+      messages: [{ role: 'user', content: buildPrompt(today, topicsStr, sourcesStr, newsQty) }]
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(j1) {
+    if (j1.error) throw new Error(j1.error.message);
+    var body = j1.content.filter(function(b) { return b.type === 'text'; }).map(function(b) { return b.text; }).join('');
+    if (!body) throw new Error('No se pudo generar el digest. Intenta nuevamente.');
+    pushLog('Digest compilado ✓');
+    showStatus('info', '<span class="spin"></span> Enviando correo...', logLines.join('\n'));
+    pushLog('Enviando por Gmail...');
+
+    var subj = 'Tu Digest Matutino — ' + today;
+    var fullHtml = '<html><body style="font-family:Georgia,serif;max-width:640px;margin:0 auto;padding:24px;color:#1a1a18;background:#f5f0e8;">' + body + '</body></html>';
+
+    return fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        mcp_servers: [{ type: 'url', url: 'https://gmail.mcp.claude.com/mcp', name: 'gmail' }],
+        messages: [{ role: 'user', content: 'Envía un correo a ' + email + ' con asunto "' + subj + '" y el siguiente cuerpo HTML:\n\n' + fullHtml }]
+      })
+    });
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(j2) {
+    if (j2.error) throw new Error(j2.error.message);
+    pushLog('Correo enviado ✓');
+    showStatus('success', 'Digest enviado a <strong>' + document.getElementById('subEmail').value.trim() + '</strong>. ¡Revisa tu bandeja de entrada!', logLines.join('\n'));
+  })
+  .catch(function(err) {
+    showStatus('error', 'Algo salió mal: ' + err.message, logLines.join('\n'));
+  })
+  .finally(function() {
+    btn.disabled = false;
+  });
+}
+
+// Decorative chips on landing
+document.querySelectorAll('.topics-section .topic-chip').forEach(function(c) {
+  c.addEventListener('click', function() { c.classList.toggle('on'); });
+});
+
+// Scroll reveal
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+renderTopics();
+renderSources();
+</script>
 </body>
 </html>
