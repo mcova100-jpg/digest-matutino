@@ -322,7 +322,7 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
         <span class="pv-dot" style="background:#e24b4a"></span>
         <span class="pv-dot" style="background:#ef9f27"></span>
         <span class="pv-dot" style="background:#639922"></span>
-        <span style="font-size:11px;color:#4a4840;margin-left:8px;font-family:'DM Sans',sans-serif;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee9a9bae8d819c9c8b81c08d8183">[email&#160;protected]</a> — Bandeja de entrada</span>
+        <span style="font-size:11px;color:#4a4840;margin-left:8px;font-family:'DM Sans',sans-serif;">tu@correo.com — Bandeja de entrada</span>
       </div>
       <div class="pv-body">
         <div class="pv-header">
@@ -362,16 +362,16 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
 <!-- SUBSCRIBE FORM -->
 <section class="subscribe-section" id="suscribirse">
   <div class="subscribe-inner">
-    <span class="section-label reveal">Suscribirse</span>
-    <h2 class="sub-title reveal">Empieza a recibir<br>tu digest mañana</h2>
-    <p class="sub-desc reveal">Configura tus preferencias y te enviamos el primer digest hoy.</p>
+    <span class="section-label">Suscribirse</span>
+    <h2 class="sub-title">Empieza a recibir<br>tu digest mañana</h2>
+    <p class="sub-desc">Configura tus preferencias y te enviamos el primer digest hoy.</p>
 
-    <div class="form-group reveal">
+    <div class="form-group">
       <label class="form-label">Tu correo electrónico</label>
       <input class="form-input" type="email" id="subEmail" placeholder="tu@correo.com">
     </div>
 
-    <div class="form-group reveal">
+    <div class="form-group">
       <label class="form-label">Temas de interés</label>
       <div class="chips-row" id="topicChips"></div>
       <div class="custom-row">
@@ -381,7 +381,7 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
       <div class="custom-tags" id="custTags"></div>
     </div>
 
-    <div class="form-group reveal">
+    <div class="form-group">
       <label class="form-label">Medios a monitorear</label>
       <div id="srcCats"></div>
       <div class="src-actions">
@@ -393,7 +393,7 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
       </div>
     </div>
 
-    <div class="form-group reveal">
+    <div class="form-group">
       <label class="form-label">Cantidad de noticias por tema</label>
       <div class="qty-row">
         <button class="qty-btn" data-qty="3" onclick="pickQty(this)"><span class="qty-num">3</span><span class="qty-label">Breve</span></button>
@@ -404,8 +404,8 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
       </div>
     </div>
 
-    <div class="divider-line reveal"></div>
-    <button class="submit-btn reveal" id="subBtn" onclick="sendDigest()">Enviar mi digest de hoy →</button>
+    <div class="divider-line"></div>
+    <button class="submit-btn" id="subBtn" onclick="sendDigest()">Enviar mi digest de hoy →</button>
     <div class="status-box" id="statusBox">
       <div id="statusMsg"></div>
       <div class="status-log" id="statusLog"></div>
@@ -419,7 +419,7 @@ footer { background: var(--ink); color: #4a4840; padding: 3rem 2rem; text-align:
   <div class="footer-copy">© 2026 Digest Matutino · Hecho con ❤️ en Chile</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const TOPICS = ['Política','Economía','Tecnología','Deportes','Cultura','Ciencia','Salud','Educación','Medio Ambiente','Internacional','Negocios','Entretenimiento'];
 
 const SOURCE_CATS = [
@@ -598,7 +598,7 @@ function sendDigest() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': '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AAA',
+      'x-api-key': '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',
       'anthropic-version': '2023-06-01',
       'anthropic-dangerous-direct-browser-access': 'true'
     },
@@ -625,7 +625,7 @@ function sendDigest() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': '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AAA',
+        'x-api-key': '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',
         'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true'
       },
@@ -656,11 +656,10 @@ document.querySelectorAll('.topics-section .topic-chip').forEach(function(c) {
   c.addEventListener('click', function() { c.classList.toggle('on'); });
 });
 
-// Scroll reveal
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+// Scroll reveal - elements always visible, animation is bonus
+document.querySelectorAll('.reveal').forEach(function(el) {
+  el.classList.add('visible');
+});
 
 renderTopics();
 renderSources();
